@@ -26,10 +26,6 @@ def convert_files_to_csv(folder_path, regex_pattern, csv_filename):
                     matches = regex_pattern.findall(content)
 
                     # Write match groups to the CSV file
-                    #for match in matches:
-                    #    match_groups = list(match)
-                    #    if any(match_groups):
-                    #        csv_writer.writerow(match_groups)
                     for match in matches:
                         csv_writer.writerow(list(match))
 
