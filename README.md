@@ -5,3 +5,8 @@ If you [enable tracing](https://learn.microsoft.com/en-us/previous-versions/trou
 This Python script will parse all files in a folder and generate csv file from trace entry headers.
 
 Remember to adjust path to folder containing trace logs.
+
+Usage:
+```
+python parse.py
+```
