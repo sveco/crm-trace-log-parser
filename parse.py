@@ -1,4 +1,5 @@
 import os
+import sys
 import re
 import csv
 
@@ -35,8 +36,14 @@ def convert_files_to_csv(folder_path, regex_pattern, csv_filename):
     print(f"Conversion completed. Results saved to {csv_filename}.")
 
 
-# Folder path containing the files to be converted
-folder_path = 'C:/TEMP/tracelogs_NR2_2023_05_23'
+if __name__ == '__main__':
+    # Check if the folder path is provided as an argument
+    if len(sys.argv) < 2:
+        print("Please provide the folder path as an argument.")
+        sys.exit(1)
+
+    # Folder path containing the files to be converted
+    folder_path = sys.argv[1]
 
 # Regex pattern to extract desired data with groups
 regex_pattern = re.compile(r'^\[(.*)\] Process:(.*?)\s\|Organization:(.*?)\s\|Thread:\s*(\d*) \|Category: ([a-zA-Z\.]*?) \|User: (.*?) \|Level: (.*?) \|ReqId: (.*?) \|ActivityId: (.*?) \| (.*)$', re.M)
