@@ -2,10 +2,14 @@ import os
 import sys
 import re
 import csv
+import time
 
 def convert_files_to_csv(folder_path, regex_pattern, csv_filename):
-    # Get the number of match groups in the regex pattern
-    num_groups = regex_pattern.groups
+
+    # Variables to track total size of files and time spent
+    total_size = 0
+    total_rows = 0
+    start_time = time.time()
 
     # Create a CSV file and open it in write mode
     with open(csv_filename, 'w', newline='') as csv_file:
@@ -20,6 +24,9 @@ def convert_files_to_csv(folder_path, regex_pattern, csv_filename):
 
             # Check if the path is a file
             if os.path.isfile(file_path):
+                file_size = os.path.getsize(file_path)
+                total_size += file_size
+            
                 with open(file_path, 'r', encoding="utf-8") as file:
                     try:
                         content = file.read()
@@ -32,9 +39,16 @@ def convert_files_to_csv(folder_path, regex_pattern, csv_filename):
                     # Write match groups to the CSV file
                     for match in matches:
                         csv_writer.writerow(list(match))
+                        total_rows += 1
+                        
+    end_time = time.time()
+    total_time = end_time - start_time
 
     print(f"Conversion completed. Results saved to {csv_filename}.")
-
+    print(f"Total files processed: {len(os.listdir(folder_path))}")
+    print(f"Total size of files processed: {total_size} bytes")
+    print(f"Found {total_rows} rows.")
+    print(f"Time spent: {total_time:.2f} seconds")
 
 if __name__ == '__main__':
     # Check if the folder path is provided as an argument
