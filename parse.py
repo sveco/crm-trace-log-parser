@@ -11,7 +11,7 @@ def convert_files_to_csv(folder_path, regex_pattern, csv_filename):
         csv_writer = csv.writer(csv_file)
 
         # Write the header row
-        csv_writer.writerow(['Timestamp', 'Process', 'OrganizationId', 'Thread', 'Category','UserId', "Level', ReqId', 'ActivityId', 'Details'])
+        csv_writer.writerow(['Timestamp', 'Process', 'OrganizationId', 'Thread', 'Category','UserId', 'Level', 'ReqId', 'ActivityId', 'Details'])
         
         # Iterate through all files in the folder
         for filename in os.listdir(folder_path):
